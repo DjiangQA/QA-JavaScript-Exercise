@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="CSS test2.css">
+</head>
+<body>
+	<h1>Coding challenge 2</h1>
+
+	<h2>Task 1</h2>
+
+	<script>
+		var x = firstTask(3);
+		function firstTask(n1) {    
+			return Math.pow(n1,n1)
+		}
+
+		document.write("task 1 : " + x);
+	</script>
+	<br />
+	<br />
+	<script>
+		var x2 = secondTask(4,5,6);
+
+		function secondTask(number1, number2, number3) {    
+			return (number1 + number2 + number3)
+		}
+
+		document.write("task 2 :" + x2);
+	</script>
+
+	<br />
+	<br />
+
+	<script>
+
+		var person = { name: "dave", age: "20", occupation: "developer" };
+
+		document.write("task 3 : name:" + person.name +" age:" + person.age +" occupation:"+ person.occupation);
+
+		person.age ++
+
+		document.write("<br> task 3 : name:" + person.name +" age:" + person.age +" occupation:"+ person.occupation);
+	</script>
+
+	<br />
+
+	<div id="iwanttowritemore">
+		<script>
+			var button = document.createElement("button");
+			button.innerHTML = "Task 4";
+
+			var body = document.getElementsByTagName("body")[0];
+			body.appendChild(button);
+
+			button.addEventListener ("click", function() {
+				person.age ++
+				document.getElementById("iwanttowritemore").innerHTML = "<br> task 4 : name:" + person.name +" age:" + person.age +" occupation:"+ person.occupation
+			});
+		</script>
+
+	</div>
+
+
+
+</body>
+</html>
