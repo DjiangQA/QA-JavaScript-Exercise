@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+	<h1>Level 2 - Intermediate</h1>
+
+	<h2>ITERATION 3 - FIZZ BUZZ</h2>
+
+	<p>Create a method that prints the numbers 1 to 100 via a for loop, however if the number it's outputting is divisible by 3
+		then output "Fizz" instead, if the number is divisible by 5 output "Buzz" instead. If the number is divisible by both 3
+		and 5, output "FizzBuzz"</p>
+	<p>Additional -- Add 3 additional parameters to your fizz buzz method, one for the number it will count up to, one for the
+		word it outputs if its divisible by 3 and one for the word it outputs is divisible by 5, then make your application work
+		with these parameters instead of hard-coded values.</p>
+	<button onclick="myFunction3()">Start</button>
+
+	<br>Max number :<input type="text" id="maxNumber" value="">
+	<br>Fizz word :<input type="text" id="fWord" value="">
+	<br>Buzz word :<input type="text" id="bWord" value="">
+	<br>Fizz Buzz word :<input type="text" id="fbWord" value="">
+
+
+	<ul id="myList4">
+	</ul>
+
+	<script type="text/javascript">
+		function myFunction3() {
+
+			var MaxNumber = document.getElementById("maxNumber").value;
+			var Fword = document.getElementById("fWord").value;
+			var Bword = document.getElementById("bWord").value;
+			var FBWord = document.getElementById("fbWord").value;
+			//console.log(document.getElementById('targetNumber').value);
+			//console.log(document.getElementById('targetNumber').value);
+			//console.log(document.getElementById('targetNumber').value);
+			//console.log(document.getElementById('targetNumber').value);
+
+			for (i = 1; i <= MaxNumber; i++) {
+				var node = document.createElement("LI");
+				if (i % 5 === 0 && i % 3 === 0) {
+					//console.log("FizzBuzz");
+					var textnode = document.createTextNode(FBWord);
+				} else if (i % 3 === 0) {
+					//console.log("Fizz");
+					var textnode = document.createTextNode(Fword);
+				} else if (i % 5 === 0) {
+					//console.log("Buzz");
+					var textnode = document.createTextNode(Bword);
+				} else {
+					//console.log(i);
+					var textnode = document.createTextNode(i);
+				}
+				node.appendChild(textnode);
+				document.getElementById("myList4").appendChild(node);
+			};
+		}
+	</script>
+
+	<h2>ITERATION 4</h2>
+	<p>Create a method accepts a number then, outputting what it did at each iteration, and how many iterations it took to get
+		to the end.
+		<br>--If the number is divisible by 3, divide it by 3.
+		<br>--If it’s not, either add 1 or subtract 1 (to make it divisible by 3), then divide it by 3.
+		<br>--It stops when the number it reaches is 1</p>
+	<br><button onclick="myFunction4()">Start</button>
+
+	<br>Number :<input type="text" id="Number" value="">
+
+	<ul id="myList5">
+	</ul>
+
+	<script>
+		function myFunction4() {
+			var one = 1 * 1;
+
+			var number = document.getElementById("Number").value * 1;
+			var result = number * 1;
+			while (result !== 1) {
+				var node = document.createElement("LI");
+				if (result % 3 === 0) {
+					console.log(result);
+					result = result / 3;
+					var textnode = document.createTextNode(result);
+				} else if ((result + 1) % 3 === 0) {
+					result += 1;
+					console.log(result);
+					result = result / 3;
+					var textnode = document.createTextNode(result);
+				} else if ((result - 1) % 3 === 0) {
+					result -= 1;
+					console.log(result);
+					result = result / 3;
+					var textnode = document.createTextNode(result);
+				}
+
+				node.appendChild(textnode);
+				document.getElementById("myList5").appendChild(node);
+			}
+
+		}
+	</script>
+
+	<h2>STRINGS 4</h2>
+	<p>We’ll say that a “triple” in a string is a character appearing three times in a row. Create a function that accepts a string
+		and returns the amount of times a triple exists in that string.</p>
+
+	<p>Check console </p>
+	<p>aaanjkjsssjkljkleeejkljklwww</p>
+
+
+
+	<script>
+		function getChar(data) {
+
+			var count = 0;
+
+			for (var b = 0; b < data.length - 2; b++) {
+				if (data.charAt(b) === data.charAt(b + 1) && data.charAt(b) === data.charAt(b + 2)) {
+					count++;
+				}
+			}
+			console.log(count);
+		}
+		getChar("aaanjkjsssjkljkleeejkljklwww");
+	</script>
+
+	<h2>DOM 1</h2>
+	<p>Create a function that creates a paragraph tag Create another function that changes the text of that paragraph tag to what
+		is in a textbox Create another function that deletes the paragraph tag All of these functions should be called with a button(s)
+	</p>
+	<button onclick="funcmakeparagraph()">Press</button>
+
+
+	<script>
+		function funcmakeparagraph() {
+			var para = document.createElement("P");
+			var t = document.createTextNode("This is a paragraph.");
+			para.appendChild(t);
+			document.body.appendChild(para);
+		}
+	</script>
+
+
+
+
+</body>
+
+</html>
