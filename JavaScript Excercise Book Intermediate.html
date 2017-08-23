@@ -65,9 +65,10 @@
 		<br>--If the number is divisible by 3, divide it by 3.
 		<br>--If it’s not, either add 1 or subtract 1 (to make it divisible by 3), then divide it by 3.
 		<br>--It stops when the number it reaches is 1</p>
-	<br><button onclick="myFunction4()">Start</button>
+
 
 	<br>Number :<input type="text" id="Number" value="">
+	<button onclick="myFunction4()">Start</button>
 
 	<ul id="myList5">
 	</ul>
@@ -127,23 +128,192 @@
 		getChar("aaanjkjsssjkljkleeejkljklwww");
 	</script>
 
-	<h2>DOM 1</h2>
-	<p>Create a function that creates a paragraph tag Create another function that changes the text of that paragraph tag to what
-		is in a textbox Create another function that deletes the paragraph tag All of these functions should be called with a button(s)
-	</p>
-	<button onclick="funcmakeparagraph()">Press</button>
+	<h2>JSON 1</h2>
+
+	<p>Using basic JavaScript, access the JSON file at https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json
+		Once loaded, display the objects retrieved in an organised fashion.</p>
+
+	<div id="JSON1">
+		<script>
+			let requestURL = 'https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
+			let request = new XMLHttpRequest();
+			request.open('GET', requestURL);
+			request.responseType = 'json'
+			request.send();
+			request.onload = function () {
+				let requestData = request.response;
+
+				let myH1 = document.createElement('h1');
+				let myp1 = document.createElement('p');
+				let myp2 = document.createElement('p');
+				let myp3 = document.createElement('p');
+				let myp4 = document.createElement('p');
+
+				let myp5 = document.createElement('p');
+				let myp6 = document.createElement('p');
+				let myp7 = document.createElement('p');
+				let myp8 = document.createElement('p');
+
+				let myp9 = document.createElement('p');
+				let myp10 = document.createElement('p');
+				let myp11 = document.createElement('p');
+				let myp12 = document.createElement('p');
+
+				let myp13 = document.createElement('p');
+				let myp14 = document.createElement('p');
+				let myp15 = document.createElement('p');
+				let myp16 = document.createElement('p');
+
+				myH1.textContent = requestData['squadName'];
+				myp1.textContent = "HomeTown :" + requestData['homeTown'];
+				myp2.textContent = "Formed :" + requestData['formed'];
+				myp3.textContent = "SecretBase :" + requestData['secretBase'];
+				myp4.textContent = "Status :" + requestData['active'];
+
+				myp5.textContent = "Member1 name:" + requestData['members'][0].name;
+				myp6.textContent = "Member1 age:" + requestData['members'][0].age;
+				myp7.textContent = "Member1 secretIdentity:" + requestData['members'][0].secretIdentity;
+				myp8.textContent = "Member1 powers:" + requestData['members'][0].powers;
+
+				myp9.textContent = "Member2 name:" + requestData['members'][1].name;
+				myp10.textContent = "Member2 age:" + requestData['members'][1].age;
+				myp11.textContent = "Member2 secretIdentity:" + requestData['members'][1].secretIdentity;
+				myp12.textContent = "Member2 powers:" + requestData['members'][1].powers;
+
+				myp13.textContent = "Member3 name:" + requestData['members'][2].name;
+				myp14.textContent = "Member3 age:" + requestData['members'][2].age;
+				myp15.textContent = "Member3 secretIdentity:" + requestData['members'][2].secretIdentity;
+				myp16.textContent = "Member3 powers:" + requestData['members'][2].powers;
 
 
-	<script>
-		function funcmakeparagraph() {
-			var para = document.createElement("P");
-			var t = document.createTextNode("This is a paragraph.");
-			para.appendChild(t);
-			document.body.appendChild(para);
-		}
-	</script>
+				document.getElementById("JSON1").appendChild(myH1);
+				document.getElementById("JSON1").appendChild(myp1);
+				document.getElementById("JSON1").appendChild(myp2);
+				document.getElementById("JSON1").appendChild(myp3);
+				document.getElementById("JSON1").appendChild(myp4);
+
+				document.getElementById("JSON1").appendChild(myp5);
+				document.getElementById("JSON1").appendChild(myp6);
+				document.getElementById("JSON1").appendChild(myp7);
+				document.getElementById("JSON1").appendChild(myp8);
+
+				document.getElementById("JSON1").appendChild(myp9);
+				document.getElementById("JSON1").appendChild(myp10);
+				document.getElementById("JSON1").appendChild(myp11);
+				document.getElementById("JSON1").appendChild(myp12);
+
+				document.getElementById("JSON1").appendChild(myp13);
+				document.getElementById("JSON1").appendChild(myp14);
+				document.getElementById("JSON1").appendChild(myp15);
+				document.getElementById("JSON1").appendChild(myp16);
+
+			}
+		</script>
+	</div>
+
+	<h2>JSON 2</h2>
+
+	<p>Using basic JavaScript, access the JSON file at https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json
+		Once loaded, create a search feature that will search for a specific king(s) depending on the input</p>
+
+	<br>search :<input type="text" id="search" value="">
+	<button onclick="searchKing()">Search</button>
+	<p id="textbox1"></p>
+	<div id="searchkings">
+		<script>
+			var requestData2;
+			let requestURL2 = 'https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json';
+			let request2 = new XMLHttpRequest();
+			request2.open('GET', requestURL2);
+			request2.responseType = 'json'
+			request2.send();
+			request2.onload = function () {
+				requestData2 = request2.response;
+			}
+
+			function searchKing() {
+				var kings = requestData2.filter((a) => {
+					return kings.nm === (document.getElementById("search").value);
+				});
+				var par = document.createElement("p");
+				par.textContent = "Name: " + kings[0].nm + "| City: " + kings[0].cty + "| House: " + kings[0].hse + "| Year: " +
+					kings[0].yrs;
+				document.getElementById("textbox1").appendChild(kingsout);
 
 
+				/*let kings = requestData2.filter((a) => {
+					return a.nm || a.cty || a.hse || a.yrs === document.getElementById('search').value;
+				});
+				let kingsout = document.createElement("p");
+				kingsout.id = "kingsout";
+				kingsout.textContent =
+					`Name: ${kings[0].nm} | City: ${kings[0].cty} | House: ${kings[0].hse} | Years: ${kings[0].yrs}`;
+				document.getElementById("textbox1").appendChild(kingsout);*/
+			}
+		</script>
+	</div>
+
+	<h2>GARAGE</h2>
+	<p>Create a virtual garage with the following functionality;
+		<br>• Check in cars to the garage
+		<br>• Check out cars from the garage
+		<br>• Output the contents of the garage
+		<br>• Calculate the bill for a car, dependant on its attributes All of this functionality should be done via a user interface,
+		buttons and textboxes and any other form elements you think are appropriate. Extra functionality that should be created,
+		not garage related;
+		<br>• Creating cars with no faults
+		<br>• Creating cars with numerous faults These will also be done via a user interface, however it should be distinguished
+		to be separate from the Garage.</p>
+
+	<br>Car make :<input type="text" id="Cmake" value="">
+	<br>Car model :<input type="text" id="Cmodel" value="">
+	<br>Reg number :<input type="text" id="Rnumber" value="">
+	<br>Condition :<input type="text" id="Condi" value="">
+
+	<br><button onclick="Carinfunc()">Check in Car</button>
+	<button onclick="Searchcar()">Search car</button>
+	<button onclick="Caroutfunc()">Check out Car</button>
+	<button onclick="OutGfunc()">Output Garage</button>
+	<button onclick="Calfunc()">Calculate cost</button>
+
+
+	<div id="garage">
+		<script>
+			var cList = [];
+
+			function Carinfunc() {
+				let car = {
+					make: document.getElementById("Cmake").value,
+					model: document.getElementById("Cmodel").value,
+					reg: document.getElementById("Rnumber").value,
+					condition: document.getElementById("Condi").value
+				};
+
+				car.push(cList);
+			}
+
+			function Searchcar() {
+				let container = document.getElementById("garage");
+				let a = cList.filter((b) => {
+					return b.reg === document.getElementById("Rnumber");
+				})
+
+				if (a.length !== 0) {
+					container.innerHTML = "Make: " + a[0].make + "<br>Model: " + a[0].model + "<br>Reg: " + a[0].reg +
+						"<br>Condition: " + a[0].condition;
+				} else {
+					container.innerHTML = "Car dont exist in garage";
+				}
+			}
+
+			function Caroutfunc() {
+				let container = document.getElementById("Rnumber");
+				let index = cList.findIndex((b) =>
+					return
+				)
+			};
+		</script>
+	</div>
 
 
 </body>
