@@ -219,6 +219,7 @@
 	<br>search :<input type="text" id="search" value="">
 	<button onclick="searchKing()">Search</button>
 	<p id="textbox1"></p>
+
 	<div id="searchkings">
 		<script>
 			var requestData2;
@@ -231,24 +232,58 @@
 				requestData2 = request2.response;
 			}
 
+
+
 			function searchKing() {
-				var kings = requestData2.filter((a) => {
-					return kings.nm === (document.getElementById("search").value);
-				});
-				var par = document.createElement("p");
-				par.textContent = "Name: " + kings[0].nm + "| City: " + kings[0].cty + "| House: " + kings[0].hse + "| Year: " +
-					kings[0].yrs;
-				document.getElementById("textbox1").appendChild(kingsout);
+
+				let kingName = document.createElement('kingName');
+				let kingCity = document.createElement('kingCity');
+				let kingHouse = document.createElement('kingHouse');
+				let kingYears = document.createElement('kingYears');
+				let text = document.createElement('p');
+
+				let stuff = "";
+
 
 
 				/*let kings = requestData2.filter((a) => {
-					return a.nm || a.cty || a.hse || a.yrs === document.getElementById('search').value;
+
+					return a.nm === document.getElementById('search').value || a.cty === document.getElementById(
+						'search').value || a.hse === document.getElementById('search').value || a.yrs === document.getElementById(
+						'search').value;
 				});
+				console.log(kings);
 				let kingsout = document.createElement("p");
 				kingsout.id = "kingsout";
 				kingsout.textContent =
 					`Name: ${kings[0].nm} | City: ${kings[0].cty} | House: ${kings[0].hse} | Years: ${kings[0].yrs}`;
 				document.getElementById("textbox1").appendChild(kingsout);*/
+
+				var king = requestData2.filter((d) => {
+
+					return d.nm === (document.getElementById("search").value) ||
+						d.cty === (document.getElementById("search").value) ||
+						d.hse === (document.getElementById("search").value) ||
+						d.yrs === (document.getElementById("search").value);
+
+				});
+				//let a = 0;
+				for (let i = 0; i < king.length; i++) {
+					//kingName.innerHTML += "<br>" + king[i].nm;
+					//kingCity.innerHTML += "<br>" + king[i].cty;
+					//kingHouse.innerHTML += "<br>" + king[i].hse;
+					//kingYears.innerHTML += "<br>" + king[i].yrs;
+					//a++;
+					stuff += king[i].nm + "<br>" + king[i].cty + "<br>" + king[i].hse + "<br>" + king[i].yrs + "<br><br>";
+				}
+				text.innerHTML = stuff;
+				document.getElementById('searchkings').appendChild(text);
+
+				/*document.getElementById('searchkings').appendChild(kingName);
+				document.getElementById('searchkings').appendChild(kingCity);
+				document.getElementById('searchkings').appendChild(kingHouse);
+				document.getElementById('searchkings').appendChild(kingYears);*/
+
 			}
 		</script>
 	</div>
@@ -265,53 +300,115 @@
 		<br>• Creating cars with numerous faults These will also be done via a user interface, however it should be distinguished
 		to be separate from the Garage.</p>
 
+	<div id="carinfo"></div>
+	<div id="carstatus"></div>
+	<div id="carremove"></div>
+	<div id="garageout"></div>
+	<div id="carcount">Objects currently in garage: 0</div>
+
 	<br>Car make :<input type="text" id="Cmake" value="">
 	<br>Car model :<input type="text" id="Cmodel" value="">
 	<br>Reg number :<input type="text" id="Rnumber" value="">
-	<br>Condition :<input type="text" id="Condi" value="">
+	<br>Cost :<input type="text" id="Cost" value="">
 
 	<br><button onclick="Carinfunc()">Check in Car</button>
 	<button onclick="Searchcar()">Search car</button>
 	<button onclick="Caroutfunc()">Check out Car</button>
 	<button onclick="OutGfunc()">Output Garage</button>
 	<button onclick="Calfunc()">Calculate cost</button>
-
+	<button onclick="clearlist()">Clear results</button>
 
 	<div id="garage">
 		<script>
-			var cList = [];
+			let car_list = [];
+			let car_count = car_list.length;
+			let make = "";
+			let model = "";
+			let reg = "";
+			let cost = "";
+			let fault = "";
 
 			function Carinfunc() {
 				let car = {
 					make: document.getElementById("Cmake").value,
 					model: document.getElementById("Cmodel").value,
 					reg: document.getElementById("Rnumber").value,
-					condition: document.getElementById("Condi").value
+					cost: document.getElementById("Cost").value
 				};
 
-				car.push(cList);
+				car_list.push(car);
+				document.getElementById("carcount").innerHTML = "Objects currently in garage: " + car_list.length;
+
 			}
 
 			function Searchcar() {
-				let container = document.getElementById("garage");
-				let a = cList.filter((b) => {
-					return b.reg === document.getElementById("Rnumber");
-				})
+				console.log(car_list);
+				var car_search = car_list.filter((d) => {
 
-				if (a.length !== 0) {
-					container.innerHTML = "Make: " + a[0].make + "<br>Model: " + a[0].model + "<br>Reg: " + a[0].reg +
-						"<br>Condition: " + a[0].condition;
-				} else {
-					container.innerHTML = "Car dont exist in garage";
+					return d.make === (document.getElementById("Cmake").value) ||
+						d.model === (document.getElementById("Cmodel").value) ||
+						d.reg === (document.getElementById("Rnumber").value) ||
+						d.cost === (document.getElementById("Cost").value);
+
+				});
+
+				for (let i = 0; i < car_search.length; i++) {
+					var res = document.createElement("p")
+					res.id = "searchresults";
+					res.innerHTML = car_search[i].make + "<br>" + car_search[i].model + "<br>" + car_search[i].reg +
+						"<br>" + car_search[i].cost;
+					document.getElementById("carinfo").appendChild(res);
 				}
 			}
 
+			function clearlist() {
+				document.getElementById("searchresults").remove();
+			}
+
 			function Caroutfunc() {
-				let container = document.getElementById("Rnumber");
-				let index = cList.findIndex((b) =>
-					return
-				)
-			};
+				var car_search = car_list.findIndex((d) => {
+
+					return d.make === (document.getElementById("Cmake").value) ||
+						d.model === (document.getElementById("Cmodel").value) ||
+						d.reg === (document.getElementById("Rnumber").value) ||
+						d.cost === (document.getElementById("Cost").value);
+
+				});
+				console.log(car_search);
+				car_list.splice(car_search);
+				document.getElementById("carcount").innerHTML = "Objects currently in garage: " + car_list.length;
+			}
+
+			function OutGfunc() {
+				let car_stuff = document.createElement('p');
+				car_stuff.id = "searchresults";
+				let stuff2 = "";
+
+				for (let v = 0; v < car_list.length; v++) {
+					stuff2 += car_list[v].make + "<br>" + car_list[v].model + "<br>" + car_list[v].reg + "<br>" + car_list[v].cost +
+						"<br><br>";
+
+				}
+				car_stuff.innerHTML = stuff2;
+				document.getElementById("garageout").appendChild(car_stuff);
+			}
+
+			function Calfunc() {
+				//let cost1 = document.getElementById("Cost").value;
+				let carcost = [];
+				let totalcost1 = 0;
+				let totalcost2 = 0;
+				let car_cost = document.createElement('p');
+
+				for (let c = 0; c < car_list.length; c++) {
+					totalcost1 = car_list[c].cost;
+					totalcost2 = totalcost2 + totalcost1 * 1;
+				}
+				car_cost.innerHTML = "Total garage cost: " + totalcost2 + "£";
+
+				document.getElementById("garageout").appendChild(car_cost);
+
+			}
 		</script>
 	</div>
 
